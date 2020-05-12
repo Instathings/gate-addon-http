@@ -79,12 +79,32 @@ class GateAddOnHTTP extends EventEmitter {
 
   stop() { }
 
-  control(message, action) { }
+  control(message, action) {
+    const httpDevice = this.knownDevices.find((httpDeviceFilter) => httpDeviceFilter.id === this.id);
+    const friendlyName = _.get(httpDevice, 'ieeeAddr');
+    const topic = `http2mqtt/${friendlyName}/${action}`;
+
+    if (action === 'get') {
+      const responseTopic = `http2mqtt/${friendlyName}`;
+      this.client.once('message', (topic, responseMessage) => {
+        const parsed = JSON.parse(responseMessage.toString());
+        this.client.unsubscribe(responseTopic, (err) => { });
+        const response = {
+          payload: parsed,
+          requestId: message.requestId,
+          deviceId: message.deviceId,
+          projectId: process.env.PROJECT_ID,
+        };
+        this.emit('status', response);
+      });
+      this.client.subscribe(responseTopic, (err) => { });
+    }
+    const payloadDevice = (action === 'get') ? message.payload : message;
+    this.client.publish(topic, JSON.stringify(payloadDevice));
+  }
 
   remove() {
-    const device = this.knownDevices.filter((modbusDevice) => {
-      return modbusDevice.id === this.id;
-    })[0];
+    const device = this.knownDevices.find((modbusDevice) => modbusDevice.id === this.id);
     const friendlyName = _.get(device, 'ieeeAddr');
 
     this.subscribe((err) => {
