@@ -99,8 +99,7 @@ class GateAddOnHTTP extends EventEmitter {
       });
       this.client.subscribe(responseTopic, (err) => { });
     }
-    const payloadDevice = (action === 'get') ? message.payload : message;
-    this.client.publish(topic, JSON.stringify(payloadDevice));
+    this.client.publish(topic, JSON.stringify(message));
   }
 
   remove() {

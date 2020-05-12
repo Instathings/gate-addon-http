@@ -93,3 +93,4 @@ typings/
 sslCert/
 .DS_Store
 utils/
+.vscode/
