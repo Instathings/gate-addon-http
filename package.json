@@ -1,0 +1,34 @@
+{
+  "name": "@instathings/gate-addon-http",
+  "version": "1.0.0",
+  "description": "HTTP protocol support for Instathings Gate",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Instathings/gate-addon-http.git"
+  },
+  "keywords": [
+    "http",
+    "instathings"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Instathings/gate-addon-http/issues"
+  },
+  "dependencies": {
+    "async": "^3.2.0",
+    "debug": "^4.1.1",
+    "lodash": "^4.17.15",
+    "mqtt": "^3.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2"
+  },
+  "homepage": "https://github.com/Instathings/gate-addon-http#readme"
+}
