@@ -80,19 +80,6 @@ class GateAddOnHTTP extends EventEmitter {
   stop() { }
 
   control(message, action) {
-    /**
-     * If action is get message contains:
-     * {
-     *   actionId: ,
-     * }
-     * 
-     * Otherwise message is: 
-     * {
-     *   actionId: "asd"
-     *   queryParams: {}
-     *   body: {}
-     * }
-     */
     const httpDevice = this.knownDevices.find((httpDeviceFilter) => httpDeviceFilter.id === this.id);
     const friendlyName = _.get(httpDevice, 'ieeeAddr');
     const topic = `http2mqtt/${friendlyName}/${action}`;
