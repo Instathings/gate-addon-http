@@ -7,7 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.0.0] 2020-05-13
+## [1.0.2] 2020-05-15
+### Added
+- Registering `message` listener only if type is sensor to avoid that `control` response message would be sent in the data topic too
+
+## [1.0.1] 2020-05-13
 ### Removed
 - old comments
 

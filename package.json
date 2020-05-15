@@ -1,6 +1,6 @@
 {
   "name": "@instathings/gate-addon-http",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "HTTP protocol support for Instathings Gate",
   "main": "index.js",
   "scripts": {
