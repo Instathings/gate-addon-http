@@ -68,11 +68,11 @@ class GateAddOnHTTP extends EventEmitter {
   start(device) {
     const { ieeeAddr } = device;
     const topic = `http2mqtt/${ieeeAddr}`;
-    this.client.on('message', (topic, message) => {
-      const parsed = JSON.parse(message.toString());
-      this.emit('data', parsed);
-    });
     if (this.deviceType.type === 'sensor') {
+      this.client.on('message', (topic, message) => {
+        const parsed = JSON.parse(message.toString());
+        this.emit('data', parsed);
+      });
       this.client.subscribe(topic);
     }
   }
